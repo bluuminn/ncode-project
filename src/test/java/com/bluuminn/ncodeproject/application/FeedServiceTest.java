@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -50,6 +51,15 @@ class FeedServiceTest {
         assertThat(feeds.get(0).getMdName()).isEqualTo("md이름");
 
         verify(feedRepository).findAll();
+    }
+
+    @Test
+    public void getFeed() {
+
+        given(feedRepository.findById(13L)).willReturn(Optional.of(feed));
+
+        Feed feed = feedService.getFeed(13L);
+        assertThat(feed.getMdName()).isEqualTo("md이름");
     }
 
     @Test

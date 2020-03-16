@@ -31,6 +31,14 @@ public class FeedController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("{id}")
+    public FeedDto detail(
+            @PathVariable Long id
+    ) {
+        Feed feed = feedService.getFeed(id);
+        return mapper.map(feed, FeedDto.class);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(

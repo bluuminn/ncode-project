@@ -17,6 +17,10 @@ public class FeedService {
         return feedRepository.findAll();
     }
 
+    public Feed getFeed(Long id) {
+        return feedRepository.findById(id).get();
+    }
+
     public void addFeed(Feed feed) {
         feedRepository.save(feed);
     }
