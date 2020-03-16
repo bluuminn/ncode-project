@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:ncode-project
+    url: jdbc:h2:~/data/ncode-project
   jpa:
     hibernate:
       ddl-auto: update
