@@ -3,7 +3,6 @@ package com.bluuminn.ncodeproject.application;
 import com.bluuminn.ncodeproject.domain.Feed;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,9 +18,6 @@ public class FeedService {
                 .countOfShared(0)
                 .build();
 
-        List<Feed> feeds = new ArrayList<>();
-        feeds.add(feed);
-
-        return feeds;
+        return Arrays.asList(feed);
     }
 }

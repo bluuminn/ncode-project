@@ -22,7 +22,7 @@ class FeedTest {
 
     @Test
     public void checkFeed() {
-        assertThat(feed.getMdName()).isEqualTo("D.FASHION");
+        assertThat(feed.getMdName()).isEqualTo("엔코드");
         assertThat(feed.getCountOfComments()).isEqualTo(3);
     }
 
