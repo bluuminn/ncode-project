@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/feeds")
@@ -24,21 +25,19 @@ public class FeedController {
 
         List<Feed> feeds = feedService.getFeeds();
 
-        List<FeedDto> feedDtos = new ArrayList<>();
+        return feeds.stream()
+                .map(feed -> feedToDto(feed)
+                ).collect(Collectors.toList());
+    }
 
-        for (Feed feed : feeds) {
-            FeedDto feedDto = FeedDto.builder()
-                    .mdName(feed.getMdName())
-                    .contents(feed.getContents())
-                    .countOfComments(feed.getCountOfComments())
-                    .countOfLikes(feed.getCountOfLikes())
-                    .countOfShared(feed.getCountOfShared())
-                    .build();
-
-            feedDtos.add(feedDto);
-        }
-
-        return feedDtos;
+    private FeedDto feedToDto(Feed feed) {
+        return FeedDto.builder()
+                .mdName(feed.getMdName())
+                .contents(feed.getContents())
+                .countOfComments(feed.getCountOfComments())
+                .countOfLikes(feed.getCountOfLikes())
+                .countOfShared(feed.getCountOfShared())
+                .build();
     }
 
     @PostMapping

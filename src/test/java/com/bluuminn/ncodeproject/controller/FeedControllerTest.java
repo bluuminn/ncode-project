@@ -30,15 +30,13 @@ class FeedControllerTest {
     @Test
     public void list() throws Exception {
 
-        Feed feed = Feed.builder()
+        given(feedService.getFeeds()).willReturn(Arrays.asList(Feed.builder()
                 .mdName("엔코드")
                 .contents("프로젝트")
                 .countOfComments(3)
                 .countOfLikes(4)
                 .countOfShared(0)
-                .build();
-
-        given(feedService.getFeeds()).willReturn(Arrays.asList(feed));
+                .build()));
 
         mockMvc.perform(get("/feeds")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
