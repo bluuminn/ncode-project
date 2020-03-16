@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Getter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -22,19 +23,14 @@ public class Feed {
 
     private String mdImages;
 
-    @Getter
     private String mdName;
 
-    @Getter
     private String contents;
 
-    @Getter
     private Integer countOfComments;
 
-    @Getter
     private Integer countOfLikes;
 
-    @Getter
     private Integer countOfShared;
 
 }

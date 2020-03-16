@@ -3,6 +3,8 @@ package com.bluuminn.ncodeproject.controller;
 import com.bluuminn.ncodeproject.application.FeedService;
 import com.bluuminn.ncodeproject.domain.Feed;
 import com.bluuminn.ncodeproject.dto.FeedDto;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,9 @@ import java.util.stream.Collectors;
 public class FeedController {
 
     @Autowired
+    Mapper mapper;
+
+    @Autowired
     private FeedService feedService;
 
     @GetMapping
@@ -25,22 +30,12 @@ public class FeedController {
         List<Feed> feeds = feedService.getFeeds();
 
         return feeds.stream()
-                .map(feed -> feedToDto(feed)
-                ).collect(Collectors.toList());
+                .map(feed -> mapper.map(feed, FeedDto.class))
+                .collect(Collectors.toList());
     }
 
-    private FeedDto feedToDto(Feed feed) {
-        return FeedDto.builder()
-                .mdName(feed.getMdName())
-                .contents(feed.getContents())
-                .countOfComments(feed.getCountOfComments())
-                .countOfLikes(feed.getCountOfLikes())
-                .countOfShared(feed.getCountOfShared())
-                .build();
-    }
-
-    @PostMapping
-    public void create() {
-
-    }
+//    @PostMapping
+//    public void create() {
+//
+//    }
 }
