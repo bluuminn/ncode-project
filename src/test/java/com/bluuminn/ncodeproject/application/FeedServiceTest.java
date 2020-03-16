@@ -21,6 +21,7 @@ class FeedServiceTest {
 
     @Mock
     private FeedRepository feedRepository;
+
     private Feed feed;
 
     @BeforeEach
