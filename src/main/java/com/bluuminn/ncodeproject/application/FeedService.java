@@ -16,4 +16,8 @@ public class FeedService {
     public List<Feed> getFeeds() {
         return feedRepository.findAll();
     }
+
+    public void addFeed(Feed feed) {
+        //TODO: 뭔가 하자~!
+    }
 }

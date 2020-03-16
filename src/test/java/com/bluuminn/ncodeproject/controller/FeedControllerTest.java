@@ -12,8 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,4 +47,13 @@ class FeedControllerTest {
                 .andExpect(content().string(containsString("")));
     }
 
+    @Test
+    public void create() throws Exception {
+        mockMvc.perform(post("/feeds")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"mdImages\":\"md이미지\", \"mdName\":\"md이름\", \"contents\":\"피드1내용\", \"countOfComments\":3}")
+        ).andExpect(status().isCreated());
+
+        verify(feedService).addFeed(any(Feed.class));
+    }
 }
