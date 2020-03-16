@@ -1,7 +1,7 @@
 package com.bluuminn.ncodeproject.application;
 
-import com.bluuminn.ncodeproject.domain.Feed;
-import com.bluuminn.ncodeproject.domain.FeedRepository;
+import com.bluuminn.ncodeproject.domain.feed.Feed;
+import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package com.bluuminn.ncodeproject.domain;
+package com.bluuminn.ncodeproject.domain.feed;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

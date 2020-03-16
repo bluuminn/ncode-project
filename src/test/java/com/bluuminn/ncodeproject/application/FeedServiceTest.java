@@ -1,7 +1,7 @@
 package com.bluuminn.ncodeproject.application;
 
-import com.bluuminn.ncodeproject.domain.Feed;
-import com.bluuminn.ncodeproject.domain.FeedRepository;
+import com.bluuminn.ncodeproject.domain.feed.Feed;
+import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

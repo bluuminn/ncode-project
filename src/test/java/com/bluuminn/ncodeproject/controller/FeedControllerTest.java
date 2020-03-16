@@ -1,7 +1,7 @@
 package com.bluuminn.ncodeproject.controller;
 
 import com.bluuminn.ncodeproject.application.FeedService;
-import com.bluuminn.ncodeproject.domain.Feed;
+import com.bluuminn.ncodeproject.domain.feed.Feed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

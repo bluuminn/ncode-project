@@ -1,5 +1,6 @@
-package com.bluuminn.ncodeproject.domain;
+package com.bluuminn.ncodeproject.domain.comment;
 
+import com.bluuminn.ncodeproject.domain.feed.Feed;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,24 +13,23 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Feed extends BaseTimeEntity {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mdImages;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_writer"))
+    private Long commentWriter;
 
-    private String mdName;
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_to_feed"))
+    private Feed feed;
 
     @Lob
     private String contents;
 
-    /* H2 db test 위해서 primitive 타입으로 설정 함
-    *  보통은 래퍼 클래스 타입으로 지정 */
-    private int countOfComments;
-    private int countOfLikes;
-    private int countOfShared;
     private boolean deleted;
 
     public void delete() {

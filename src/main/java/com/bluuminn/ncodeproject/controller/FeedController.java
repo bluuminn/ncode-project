@@ -1,7 +1,7 @@
 package com.bluuminn.ncodeproject.controller;
 
 import com.bluuminn.ncodeproject.application.FeedService;
-import com.bluuminn.ncodeproject.domain.Feed;
+import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.dto.FeedDto;
 import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
