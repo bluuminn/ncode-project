@@ -20,23 +20,26 @@ class FeedServiceTest {
 
     @Mock
     private FeedRepository feedRepository;
+    private Feed feed;
 
     @BeforeEach
     public void setUp() {
 
         MockitoAnnotations.initMocks(this);
         feedService = new FeedService(feedRepository);
-    }
 
-    @Test
-    public void getFeeds() {
-        Feed feed = Feed.builder()
-                .mdName("엔코드")
-                .contents("프로젝트")
+        feed = Feed.builder()
+                .mdImages("md이미지")
+                .mdName("md이름")
+                .contents("피드내용")
                 .countOfComments(3)
                 .countOfLikes(4)
                 .countOfShared(0)
                 .build();
+    }
+
+    @Test
+    public void getFeeds() {
 
         given(feedRepository.findAll()).willReturn(Arrays.asList(feed));
 
@@ -44,9 +47,15 @@ class FeedServiceTest {
 
         assertThat(feeds).hasSize(1);
 
-        assertThat(feeds.get(0).getMdName()).isEqualTo("엔코드");
+        assertThat(feeds.get(0).getMdName()).isEqualTo("md이름");
 
         verify(feedRepository).findAll();
     }
 
+    @Test
+    public void addFeed() {
+        feedService.addFeed(feed);
+
+        verify(feedRepository).save(feed);
+    }
 }

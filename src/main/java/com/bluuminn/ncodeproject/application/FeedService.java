@@ -18,6 +18,6 @@ public class FeedService {
     }
 
     public void addFeed(Feed feed) {
-        //TODO: 뭔가 하자~!
+        feedRepository.save(feed);
     }
 }
