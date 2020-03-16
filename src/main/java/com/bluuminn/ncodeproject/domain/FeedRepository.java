@@ -1,20 +1,13 @@
 package com.bluuminn.ncodeproject.domain;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class FeedRepository {
+public interface FeedRepository extends JpaRepository<Feed, Long> {
 
-    private List<Feed> feeds = new ArrayList<>();
+    List<Feed> findAll();
 
-    public List<Feed> findAll() {
-        return feeds;
-    }
+    Feed save(Feed feed);
 
-    public void save(Feed feed) {
-        feeds.add(feed);
-    }
 }
