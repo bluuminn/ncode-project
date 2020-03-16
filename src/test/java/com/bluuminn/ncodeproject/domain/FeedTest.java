@@ -12,8 +12,8 @@ class FeedTest {
     @BeforeEach
     public void setUp() {
         feed = Feed.builder()
-                .mdName("D.FASHION")
-                .contents("빌리 아일리시와 H&M의 만남.")
+                .mdName("엔코드")
+                .contents("프로젝트")
                 .countOfComments(3)
                 .countOfLikes(4)
                 .countOfShared(0)
