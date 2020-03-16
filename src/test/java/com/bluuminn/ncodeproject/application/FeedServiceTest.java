@@ -4,19 +4,25 @@ import com.bluuminn.ncodeproject.domain.Feed;
 import com.bluuminn.ncodeproject.domain.FeedRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
 
 class FeedServiceTest {
 
     private FeedService feedService;
+
+    @Spy
     private FeedRepository feedRepository;
 
     @BeforeEach
     public void setUp() {
-        feedRepository = new FeedRepository();
+
+        MockitoAnnotations.initMocks(this);
         feedService = new FeedService(feedRepository);
     }
 
@@ -37,6 +43,8 @@ class FeedServiceTest {
         assertThat(feeds).hasSize(1);
 
         assertThat(feeds.get(0).getMdName()).isEqualTo("엔코드");
+
+        verify(feedRepository).findAll();
     }
 
 }
