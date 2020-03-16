@@ -4,19 +4,21 @@ import com.bluuminn.ncodeproject.domain.Feed;
 import com.bluuminn.ncodeproject.domain.FeedRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 class FeedServiceTest {
 
     private FeedService feedService;
 
-    @Spy
+    @Mock
     private FeedRepository feedRepository;
 
     @BeforeEach
@@ -36,7 +38,7 @@ class FeedServiceTest {
                 .countOfShared(0)
                 .build();
 
-        feedRepository.save(feed);
+        given(feedRepository.findAll()).willReturn(Arrays.asList(feed));
 
         List<Feed> feeds = feedService.getFeeds();
 
