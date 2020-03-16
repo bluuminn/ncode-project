@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -25,12 +23,17 @@ public class Feed {
 
     private String mdName;
 
+    @Lob
     private String contents;
 
-    private Integer countOfComments;
+    /* H2 db test 위해서 primitive 타입으로 설정 함
+    *  보통은 래퍼 클래스 타입으로 지정 */
+    private int countOfComments;
+    private int countOfLikes;
+    private int countOfShared;
+    private boolean deleted;
 
-    private Integer countOfLikes;
-
-    private Integer countOfShared;
-
+    public void delete() {
+        deleted = true;
+    }
 }

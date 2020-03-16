@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,12 +17,15 @@ public class FeedDto {
     @Mapping("id")
     private Long id;
 
+    @NotBlank
     @Mapping("mdImages")
     private String mdImages;
 
+    @NotBlank
     @Mapping("mdName")
     private String mdName;
 
+    @NotBlank
     @Mapping("contents")
     private String contents;
 

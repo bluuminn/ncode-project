@@ -1,9 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:~/data/ncode-project
+    url: jdbc:h2:mem:ncode-project
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
 ---
 spring:
   profiles: test

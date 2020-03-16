@@ -16,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,5 +86,13 @@ class FeedControllerTest {
         ).andExpect(status().isCreated());
 
         verify(feedService).addFeed(any(Feed.class));
+    }
+
+    @Test
+    public void softDelete() throws Exception {
+        mockMvc.perform(delete("/feeds/1"))
+                .andExpect(status().isOk());
+
+        verify(feedService).deleteFeed(5L);
     }
 }

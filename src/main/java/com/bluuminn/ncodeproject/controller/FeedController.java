@@ -47,4 +47,11 @@ public class FeedController {
         Feed feed = mapper.map(feedDto, Feed.class);
         feedService.addFeed(feed);
     }
+
+    @DeleteMapping("{id}")
+    public void softDelete(
+            @PathVariable Long id
+    ) {
+        feedService.deleteFeed(id);
+    }
 }

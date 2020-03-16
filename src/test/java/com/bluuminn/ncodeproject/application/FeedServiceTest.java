@@ -42,7 +42,7 @@ class FeedServiceTest {
     @Test
     public void getFeeds() {
 
-        given(feedRepository.findAll()).willReturn(Arrays.asList(feed));
+        given(feedRepository.findAllByDeleted(false)).willReturn(Arrays.asList(feed));
 
         List<Feed> feeds = feedService.getFeeds();
 
@@ -50,7 +50,7 @@ class FeedServiceTest {
 
         assertThat(feeds.get(0).getMdName()).isEqualTo("md이름");
 
-        verify(feedRepository).findAll();
+        verify(feedRepository).findAllByDeleted(false);
     }
 
     @Test
@@ -67,5 +67,17 @@ class FeedServiceTest {
         feedService.addFeed(feed);
 
         verify(feedRepository).save(feed);
+    }
+
+    @Test
+    public void deleteFeed() {
+
+        given(feedRepository.findById(13L)).willReturn(Optional.of(Feed.builder().mdName("md이름").build()));
+
+        Feed feed = feedService.deleteFeed(13L);
+
+        verify(feedRepository).findById(13L);
+
+        assertThat(feed.isDeleted()).isTrue();
     }
 }
