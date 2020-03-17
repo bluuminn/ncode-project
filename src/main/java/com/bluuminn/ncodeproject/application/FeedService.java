@@ -14,6 +14,7 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 public class FeedService {
+    //TODO: 피드 삭제 되면 거기에 딸린 댓글,좋아요,공유 모두 지워 주기
 
     @Autowired
     private FeedRepository feedRepository;

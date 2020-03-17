@@ -7,26 +7,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
+public class LikedDto {
 
     @Mapping("id")
     private Long id;
 
     @NotNull
-    @Mapping("writerId")
-    private Long writerId;
+    @Mapping("userId")
+    private Long userId;
 
     @Mapping("feed")
     private Feed feed;
 
-    @NotBlank
-    @Mapping("contents")
-    private String contents;
 }
