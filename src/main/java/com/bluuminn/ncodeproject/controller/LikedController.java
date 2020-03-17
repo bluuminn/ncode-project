@@ -34,7 +34,7 @@ public class LikedController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(
             @PathVariable Long feedId,

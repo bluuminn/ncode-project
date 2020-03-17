@@ -27,6 +27,9 @@ public class ShareService {
 
     public List<Share> getShares(Long feedId) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
+        if (feed.isDeleted()) {
+            throw new EntityNotFoundException();
+        }
         return shareRepository.findAllByFeedEquals(feed);
     }
 

@@ -41,7 +41,7 @@ public class Feed extends BaseTimeEntity {
     private List<Share> shares;
 
     /* H2 db test 위해서 primitive 타입으로 설정 함
-    *  보통은 래퍼 클래스 타입으로 지정 */
+     *  보통은 래퍼 클래스 타입으로 지정 */
     private int countOfComments;
     private int countOfLikes;
     private int countOfShared;
@@ -70,4 +70,5 @@ public class Feed extends BaseTimeEntity {
     public void addShared() {
         this.countOfShared += 1;
     }
+
 }

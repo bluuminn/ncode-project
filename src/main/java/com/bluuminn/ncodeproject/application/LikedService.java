@@ -27,6 +27,9 @@ public class LikedService {
 
     public List<Liked> getLikes(Long feedId) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
+        if (feed.isDeleted()) {
+            throw new EntityNotFoundException();
+        }
         return likedRepository.findAllByFeedEquals(feed);
     }
 

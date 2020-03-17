@@ -14,4 +14,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     Comment save(Comment comment);
 
     List<Comment> findAllByDeletedAndFeedEquals(boolean deleted, Feed feed);
+
 }
