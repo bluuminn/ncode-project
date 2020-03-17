@@ -90,7 +90,7 @@ class FeedControllerTest {
 
     @Test
     public void softDelete() throws Exception {
-        mockMvc.perform(delete("/feeds/1"))
+        mockMvc.perform(delete("/feeds/5"))
                 .andExpect(status().isOk());
 
         verify(feedService).deleteFeed(5L);

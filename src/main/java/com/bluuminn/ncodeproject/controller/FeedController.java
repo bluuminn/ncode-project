@@ -4,13 +4,16 @@ import com.bluuminn.ncodeproject.application.FeedService;
 import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.dto.FeedDto;
 import com.github.dozermapper.core.Mapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/feeds")
 public class FeedController {
@@ -18,8 +21,7 @@ public class FeedController {
     @Autowired
     Mapper mapper;
 
-    @Autowired
-    private FeedService feedService;
+    private final FeedService feedService;
 
     @GetMapping
     public List<FeedDto> list() {
@@ -42,7 +44,7 @@ public class FeedController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(
-            @RequestBody FeedDto feedDto
+            @Valid @RequestBody FeedDto feedDto
     ) {
         Feed feed = mapper.map(feedDto, Feed.class);
         feedService.addFeed(feed);

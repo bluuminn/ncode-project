@@ -1,6 +1,5 @@
-package com.bluuminn.ncodeproject.domain;
+package com.bluuminn.ncodeproject.domain.feed;
 
-import com.bluuminn.ncodeproject.domain.feed.Feed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

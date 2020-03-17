@@ -3,9 +3,11 @@ package com.bluuminn.ncodeproject.application;
 import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -20,7 +22,7 @@ public class FeedService {
     }
 
     public Feed getFeed(Long id) {
-        return feedRepository.findById(id).get();
+        return feedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     public void addFeed(Feed feed) {
@@ -28,8 +30,10 @@ public class FeedService {
     }
 
     public Feed deleteFeed(Long id) {
-        Feed feed = feedRepository.findById(id).get();
+        Feed feed = feedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         feed.delete();
         return feed;
     }
 }
+
+
