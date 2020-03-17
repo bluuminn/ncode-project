@@ -42,4 +42,28 @@ public class Feed extends BaseTimeEntity {
     public void delete() {
         deleted = true;
     }
+
+    public void addComment() {
+        this.countOfComments += 1;
+    }
+
+    public void deleteComment() {
+        this.countOfComments -= 1;
+    }
+
+    public void addLike() {
+        this.countOfLikes += 1;
+    }
+
+    public void deleteLike() {
+        this.countOfLikes -= 1;
+    }
+
+    public void addShared() {
+        this.countOfShared += 1;
+    }
+
+    public void deleteShared() {
+        this.countOfShared -= 1;
+    }
 }

@@ -36,6 +36,7 @@ public class CommentService {
     public void addComment(Comment comment, Long feedId) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
         comment.updateFeed(feed);
+        feed.addComment();
         commentRepository.save(comment);
     }
 
@@ -43,6 +44,7 @@ public class CommentService {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
         Comment comment = commentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         comment.delete();
+        feed.deleteComment();
         return comment;
     }
 
