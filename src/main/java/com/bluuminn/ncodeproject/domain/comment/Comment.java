@@ -20,7 +20,7 @@ public class Comment extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long writerId;
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_to_feed"))

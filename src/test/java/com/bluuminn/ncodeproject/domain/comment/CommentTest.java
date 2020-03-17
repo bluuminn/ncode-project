@@ -10,11 +10,11 @@ class CommentTest {
     public void checkComment() {
         Comment comment = Comment.builder()
                 .contents("댓글내용")
-                .writerId(1234L)
+                .userId(1234L)
                 .build();
 
         assertThat(comment.getContents()).isEqualTo("댓글내용");
-        assertThat(comment.getWriterId()).isEqualTo(1234L);
+        assertThat(comment.getUserId()).isEqualTo(1234L);
     }
 
 }

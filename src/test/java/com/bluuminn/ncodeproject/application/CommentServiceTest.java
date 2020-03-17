@@ -32,7 +32,7 @@ class CommentServiceTest {
 
         comment = Comment.builder()
                 .contents("댓글내용")
-                .writerId(1234L)
+                .userId(1234L)
                 .build();
     }
 
@@ -67,7 +67,7 @@ class CommentServiceTest {
 
         Comment comment = Comment.builder()
                 .contents("수정한댓글")
-                .writerId(1234L)
+                .userId(1234L)
                 .build();
 
         Comment updatedComment = commentService.updateComment(13L, 13L, comment);

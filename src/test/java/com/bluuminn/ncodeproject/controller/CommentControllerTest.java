@@ -38,7 +38,7 @@ class CommentControllerTest {
     public void setUp() {
         comment = Comment.builder()
                 .contents("댓글내용")
-                .writerId(1234L)
+                .userId(1234L)
                 .build();
     }
 
@@ -48,7 +48,7 @@ class CommentControllerTest {
         given(commentService.getComments(13L))
                 .willReturn(Arrays.asList(Comment.builder()
                         .contents("댓글내용")
-                        .writerId(1234L)
+                        .userId(1234L)
                         .build()));
 
         mockMvc.perform(get("/feeds/5/comments")

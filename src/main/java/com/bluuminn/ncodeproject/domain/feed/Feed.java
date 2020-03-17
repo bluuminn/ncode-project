@@ -3,6 +3,7 @@ package com.bluuminn.ncodeproject.domain.feed;
 import com.bluuminn.ncodeproject.domain.BaseTimeEntity;
 import com.bluuminn.ncodeproject.domain.comment.Comment;
 import com.bluuminn.ncodeproject.domain.like.Liked;
+import com.bluuminn.ncodeproject.domain.share.Share;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +37,9 @@ public class Feed extends BaseTimeEntity {
     @OneToMany(mappedBy = "feed")
     private List<Liked> likes;
 
+    @OneToMany(mappedBy = "feed")
+    private List<Share> shares;
+
     /* H2 db test 위해서 primitive 타입으로 설정 함
     *  보통은 래퍼 클래스 타입으로 지정 */
     private int countOfComments;
@@ -65,9 +69,5 @@ public class Feed extends BaseTimeEntity {
 
     public void addShared() {
         this.countOfShared += 1;
-    }
-
-    public void deleteShared() {
-        this.countOfShared -= 1;
     }
 }
