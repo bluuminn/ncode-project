@@ -3,7 +3,7 @@ package com.bluuminn.ncodeproject.application;
 import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FeedService {
 
+    @Autowired
     private FeedRepository feedRepository;
 
     public List<Feed> getFeeds() {

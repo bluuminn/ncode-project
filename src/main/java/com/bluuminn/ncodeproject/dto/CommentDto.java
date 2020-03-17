@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -19,7 +20,7 @@ public class CommentDto implements Serializable {
     @Mapping("id")
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Mapping("writerId")
     private Long writerId;
 

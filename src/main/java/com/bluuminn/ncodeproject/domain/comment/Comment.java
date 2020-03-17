@@ -22,9 +22,8 @@ public class Comment extends BaseTimeEntity {
 
     private Long writerId;
 
-    @MapsId(value = "feedId")
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "FEED_ID", updatable = false, insertable = false, foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_to_feed"))
     private Feed feed;
 
     @Lob
@@ -36,7 +35,11 @@ public class Comment extends BaseTimeEntity {
         deleted = true;
     }
 
-    public void changeByInfomation(Comment commentInfomation) {
-        this.contents = commentInfomation.getContents();
+    public void changeByInfomation(Comment commentInformation) {
+        this.contents = commentInformation.getContents();
+    }
+
+    public void updateFeed(Feed feed) {
+        this.feed = feed;
     }
 }

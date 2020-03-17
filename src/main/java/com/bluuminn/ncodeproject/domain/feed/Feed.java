@@ -28,7 +28,7 @@ public class Feed extends BaseTimeEntity {
     @Lob
     private String contents;
 
-    @OneToMany(mappedBy = "feed", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "feed")
     @OrderBy("createDate ASC")
     private List<Comment> comments;
 

@@ -7,9 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-import javax.swing.text.html.Option;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +45,7 @@ class CommentServiceTest {
 
         given(commentRepository.findAllByDeletedAndFeedEquals(false, feed)).willReturn(Arrays.asList(comment));
 
-        List<Comment> comments = commentService.getComments(feed);
+        List<Comment> comments = commentService.getComments(13L);
 
         assertThat(comments).hasSize(1);
         assertThat(comments.get(0).getContents()).isEqualTo("댓글내용");
@@ -57,7 +55,7 @@ class CommentServiceTest {
 
     @Test
     public void addComment() {
-        commentService.addComment(comment);
+        commentService.addComment(comment, 13L);
 
         verify(commentRepository).save(comment);
     }
@@ -72,7 +70,7 @@ class CommentServiceTest {
                 .writerId(1234L)
                 .build();
 
-        Comment updatedComment = commentService.updateComment(13L, comment);
+        Comment updatedComment = commentService.updateComment(13L, 13L, comment);
 
         assertThat(updatedComment.getContents()).isEqualTo("수정한댓글");
 
@@ -84,7 +82,7 @@ class CommentServiceTest {
 
         given(commentRepository.findById(13L)).willReturn(Optional.of(Comment.builder().contents("댓글내용").build()));
 
-        Comment comment = commentService.deleteComment(13L);
+        Comment comment = commentService.deleteComment(1L, 13L);
 
         verify(commentRepository).findById(13L);
 

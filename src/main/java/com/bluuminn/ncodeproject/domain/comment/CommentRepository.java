@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAll();
 
-    List<Comment> findAllByDeleted(boolean deleted);
-
     Optional<Comment> findById(Long id);
 
     Comment save(Comment comment);

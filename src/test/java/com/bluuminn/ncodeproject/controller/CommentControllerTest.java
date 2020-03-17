@@ -45,7 +45,7 @@ class CommentControllerTest {
     @Test
     public void list() throws Exception {
 
-        given(commentService.getComments(comment.getFeed()))
+        given(commentService.getComments(13L))
                 .willReturn(Arrays.asList(Comment.builder()
                         .contents("댓글내용")
                         .writerId(1234L)
@@ -57,7 +57,7 @@ class CommentControllerTest {
                 .andExpect(content().encoding("UTF-8"))
                 .andExpect(content().string(containsString("")));
 
-        verify(commentService).getComments(comment.getFeed());
+        verify(commentService).getComments(13L);
     }
 
 
@@ -65,10 +65,9 @@ class CommentControllerTest {
     public void create() throws Exception {
         mockMvc.perform(post("/feeds/5/comments")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content("{\"contents\":\"댓글내용\", \"writerId\":1234L}")
+                .content("{\"contents\":\"댓글내용\", \"writerId\":1234L, \"feedId\":5}")
         ).andExpect(status().isCreated());
-
-        verify(commentService).addComment(any(Comment.class));
+        verify(commentService).addComment(any(Comment.class), eq(13L));
     }
 
     @Test
@@ -78,7 +77,7 @@ class CommentControllerTest {
                 .content("{\"contents\":\"댓글내용수정\"}")
         ).andExpect(status().isOk());
 
-        verify(commentService).updateComment(eq(13L), any(Comment.class));
+        verify(commentService).updateComment(eq(13L), eq(12L), any(Comment.class));
     }
 
     @Test
@@ -86,7 +85,7 @@ class CommentControllerTest {
         mockMvc.perform(delete("/feeds/5/comments/5"))
                 .andExpect(status().isOk());
 
-        verify(commentService).deleteComment(5L);
+        verify(commentService).deleteComment(5L, 13L);
     }
 
 }
