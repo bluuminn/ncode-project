@@ -24,7 +24,7 @@ public class FeedService {
         pageable = PageRequest.of(pageable.getPageNumber(), 10);
         Page<Feed> feeds = feedRepository.findAllByDeletedOrderByCreateDateDesc(false, pageable);
 
-        if (feeds.getNumber() > feeds.getTotalPages()) {
+        if (feeds.getNumber() >= feeds.getTotalPages()) {
             throw new EntityNotFoundException();
         }
 
