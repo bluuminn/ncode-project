@@ -52,7 +52,7 @@ public class CommentService {
     }
 
     public Comment updateComment(Long id, Long feedId, Comment commentInformation) {
-        Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
+        feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
         Comment comment = commentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         if (!feedId.equals(comment.getFeed().getId())) {
             throw new EntityNotFoundException();

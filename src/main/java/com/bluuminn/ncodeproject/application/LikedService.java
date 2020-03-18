@@ -42,7 +42,7 @@ public class LikedService {
 
     public void deleteLike(Long id, Long feedId) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
-        Liked liked = likedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        likedRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         feed.deleteLiked();
         likedRepository.deleteById(id);
     }

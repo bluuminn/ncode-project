@@ -5,15 +5,12 @@ import com.bluuminn.ncodeproject.domain.share.Share;
 import com.bluuminn.ncodeproject.dto.ShareDto;
 import com.github.dozermapper.core.Mapper;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController

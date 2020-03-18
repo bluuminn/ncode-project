@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Service
 @Transactional
@@ -24,14 +23,6 @@ public class ShareService {
 
     @Autowired
     private FeedRepository feedRepository;
-
-    public List<Share> getShares(Long feedId) {
-        Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
-        if (feed.isDeleted()) {
-            throw new EntityNotFoundException();
-        }
-        return shareRepository.findAllByFeedEquals(feed);
-    }
 
     public void addShare(Share share, Long feedId) {
         Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);

@@ -30,7 +30,7 @@ class FeedServiceTest {
     public void setUp() {
 
         MockitoAnnotations.initMocks(this);
-        feedService = new FeedService(feedRepository);
+//        feedService = new FeedService(feedRepository);
 
         feed = Feed.builder()
                 .mdImages("md이미지")

@@ -21,7 +21,7 @@ public class Share {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_shared_to_feed"))
+    @JoinColumn(name = "FEED_ID")
     private Feed feed;
 
     public void updateFeed(Feed feed) {

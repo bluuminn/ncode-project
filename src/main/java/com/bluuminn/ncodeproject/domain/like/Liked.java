@@ -23,7 +23,7 @@ public class Liked {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_like_to_feed"))
+    @JoinColumn(name = "FEED_ID")
     private Feed feed;
 
     public void updateFeed(Feed feed) {

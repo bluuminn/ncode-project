@@ -23,7 +23,7 @@ public class Comment extends BaseTimeEntity {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_comment_to_feed"))
+    @JoinColumn(name = "FEED_ID")
     private Feed feed;
 
     @Lob
@@ -41,5 +41,6 @@ public class Comment extends BaseTimeEntity {
 
     public void updateFeed(Feed feed) {
         this.feed = feed;
+        feed.getComments().add(this);
     }
 }

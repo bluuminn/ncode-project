@@ -38,6 +38,10 @@ public class FeedController {
                 feeds.getTotalElements(), feeds.getTotalPages(), feeds.getSize(),
                 feeds.getNumber(), feeds.getNumberOfElements());
 
+//        for (Feed feed : feeds) {
+//            feed.updateComments();
+//        }
+
         return feeds.stream()
                 .map(feed -> mapper.map(feed, FeedDto.class))
                 .collect(Collectors.toList());

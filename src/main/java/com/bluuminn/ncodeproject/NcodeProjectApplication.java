@@ -1,5 +1,7 @@
 package com.bluuminn.ncodeproject;
 
+import com.bluuminn.ncodeproject.domain.comment.Comment;
+import com.bluuminn.ncodeproject.domain.comment.CommentRepository;
 import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
@@ -27,7 +29,7 @@ public class NcodeProjectApplication {
 
     // 더미 데이터 초기화
     @Bean
-    public CommandLineRunner initData(FeedRepository feedRepository) {
+    public CommandLineRunner initData(FeedRepository feedRepository, CommentRepository commentRepository) {
         return args -> IntStream.rangeClosed(1, 154).forEach(i -> {
             Feed feed = Feed.builder()
                     .mdImages("md이미지" + i)
@@ -35,7 +37,18 @@ public class NcodeProjectApplication {
                     .contents("피드내용" + i)
                     .build();
 
+            feed.addComment();
+
             feedRepository.save(feed);
+
+            Comment comment = Comment.builder()
+                    .contents("댓글내용" + i)
+                    .userId((long) i)
+                    .feed(feed)
+                    .build();
+
+            commentRepository.save(comment);
+
         });
     }
 }

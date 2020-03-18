@@ -51,6 +51,10 @@ public class Feed extends BaseTimeEntity {
         deleted = true;
     }
 
+    public void updateComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public void addComment() {
         this.countOfComments += 1;
     }
@@ -70,5 +74,4 @@ public class Feed extends BaseTimeEntity {
     public void addShared() {
         this.countOfShared += 1;
     }
-
 }

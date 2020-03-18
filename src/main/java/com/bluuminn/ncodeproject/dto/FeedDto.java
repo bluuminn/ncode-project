@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Data
 @Builder
@@ -28,6 +29,9 @@ public class FeedDto {
     @NotBlank
     @Mapping("contents")
     private String contents;
+
+    @Mapping("comments")
+    private List<CommentDto> comments;
 
     @Mapping("countOfComments")
     private Integer countOfComments;
