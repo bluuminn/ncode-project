@@ -4,11 +4,13 @@ import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.domain.feed.FeedRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Service
 @Transactional
@@ -18,8 +20,15 @@ public class FeedService {
     @Autowired
     private FeedRepository feedRepository;
 
-    public List<Feed> getFeeds() {
-        return feedRepository.findAllByDeleted(false);
+    public Page<Feed> getFeeds(Pageable pageable) {
+        pageable = PageRequest.of(pageable.getPageNumber(), 10);
+        Page<Feed> feeds = feedRepository.findAllByDeletedOrderByCreateDateDesc(false, pageable);
+
+        if (feeds.getNumber() > feeds.getTotalPages()) {
+            throw new EntityNotFoundException();
+        }
+
+        return feeds;
     }
 
     public Feed getFeed(Long id) {

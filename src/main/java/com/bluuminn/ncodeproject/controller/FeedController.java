@@ -5,7 +5,11 @@ import com.bluuminn.ncodeproject.domain.feed.Feed;
 import com.bluuminn.ncodeproject.dto.FeedDto;
 import com.github.dozermapper.core.Mapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/feeds")
@@ -24,9 +29,14 @@ public class FeedController {
     private final FeedService feedService;
 
     @GetMapping
-    public List<FeedDto> list() {
+    public List<FeedDto> list(
+            @PageableDefault Pageable pageable
+    ) {
+        Page<Feed> feeds = feedService.getFeeds(pageable);
 
-        List<Feed> feeds = feedService.getFeeds();
+        log.debug("총 element 수 : {}, 전체 page 수 : {}, 페이지 당 최대 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
+                feeds.getTotalElements(), feeds.getTotalPages(), feeds.getSize(),
+                feeds.getNumber(), feeds.getNumberOfElements());
 
         return feeds.stream()
                 .map(feed -> mapper.map(feed, FeedDto.class))
