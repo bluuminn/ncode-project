@@ -28,8 +28,8 @@ public class CommentService {
     public CommentService(CommentRepository commentRepository) {
     }
 
-    public List<Comment> getComments(Long feedId) {
-        Feed feed = feedRepository.findByDeletedAndId(false, feedId).orElseThrow(EntityNotFoundException::new);
+    public List<Comment> getComments(Long feedId) throws EntityNotFoundException {
+        Feed feed = feedRepository.findByDeletedAndId(false, feedId).get();
         if (feed.isDeleted()) {
             throw new EntityNotFoundException();
         }

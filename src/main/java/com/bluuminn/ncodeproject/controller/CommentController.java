@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,9 +28,13 @@ public class CommentController {
     @GetMapping
     public List<CommentDto> list(
             @PathVariable Long feedId
-    ) {
-        List<Comment> comments = commentService.getComments(feedId);
+    ) throws EntityNotFoundException {
+        List<Comment> comments = null;
+        try {
+            comments = commentService.getComments(feedId);
+        } catch (Exception e) {
 
+        }
         return comments.stream()
                 .map(comment -> mapper.map(comment, CommentDto.class))
                 .collect(Collectors.toList());

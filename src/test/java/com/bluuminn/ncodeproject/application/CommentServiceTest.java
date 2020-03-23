@@ -37,7 +37,7 @@ class CommentServiceTest {
     }
 
     @Test
-    public void getComments() {
+    public void getComments() throws Exception {
 
         Feed feed = Feed.builder()
                 .id(5L)
