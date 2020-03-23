@@ -29,7 +29,7 @@ public class CommentService {
     }
 
     public List<Comment> getComments(Long feedId) {
-        Feed feed = feedRepository.findById(feedId).orElseThrow(EntityNotFoundException::new);
+        Feed feed = feedRepository.findByDeletedAndId(false, feedId).orElseThrow(EntityNotFoundException::new);
         if (feed.isDeleted()) {
             throw new EntityNotFoundException();
         }

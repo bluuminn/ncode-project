@@ -28,27 +28,27 @@ public class NcodeProjectApplication {
     }
 
     // 더미 데이터 초기화
-    @Bean
-    public CommandLineRunner initData(FeedRepository feedRepository, CommentRepository commentRepository) {
-        return args -> IntStream.rangeClosed(1, 154).forEach(i -> {
-            Feed feed = Feed.builder()
-                    .mdImages("md이미지" + i)
-                    .mdName("md이름" + i)
-                    .contents("피드내용" + i)
-                    .build();
-
-            feed.addComment();
-
-            feedRepository.save(feed);
-
-            Comment comment = Comment.builder()
-                    .contents("댓글내용" + i)
-                    .userId((long) i)
-                    .feed(feed)
-                    .build();
-
-            commentRepository.save(comment);
-
-        });
-    }
+//    @Bean
+//    public CommandLineRunner initData(FeedRepository feedRepository, CommentRepository commentRepository) {
+//        return args -> IntStream.rangeClosed(1, 154).forEach(i -> {
+//            Feed feed = Feed.builder()
+//                    .mdImages("md이미지" + i)
+//                    .mdName("md이름" + i)
+//                    .contents("피드내용" + i)
+//                    .build();
+//
+//            feed.addComment();
+//
+//            feedRepository.save(feed);
+//
+//            Comment comment = Comment.builder()
+//                    .contents("댓글내용" + i)
+//                    .userId((long) i)
+//                    .feed(feed)
+//                    .build();
+//
+//            commentRepository.save(comment);
+//
+//        });
+//    }
 }

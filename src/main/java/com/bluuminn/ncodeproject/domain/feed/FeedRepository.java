@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface FeedRepository extends JpaRepository<Feed, Long> {
     Page<Feed> findAllByDeletedOrderByCreateDateDesc(boolean deleted, Pageable pageable);
 
-    Optional<Feed> findById(Long id);
+    Optional<Feed> findByDeletedAndId(boolean deleted, Long id);
 
     Feed save(Feed feed);
 }
